@@ -1,0 +1,44 @@
+<h2>Article Resources</h2>
+<br />
+Title Filter: <input type="text" ng-model="resourcesFilter.title" />&nbsp;&nbsp;&nbsp;
+Author Filter: <input type="text" ng-model="resourcesFilter.author" />
+
+<br /><br />
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Url</th>
+        <th>Author</th>
+        <th>Type</th>
+        <th>Summary</th>
+    </tr>
+    <tr ng-repeat="resource in resources | filter:resourcesFilter | orderBy:'title' " class="repeat-animation">
+        <td>{{ resource.title}}</td>
+        <td>{{ resource.url }}</td>
+        <td>{{ resource.author }}</td>
+        <td>{{ resource.type}}</td>
+        <td>{{ resource.summary}}</td>
+    </tr>
+</table>
+
+<br />
+<span>Number of Resources: {{ resources.length }}</span>
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

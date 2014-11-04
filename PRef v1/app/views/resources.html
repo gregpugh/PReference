@@ -1,0 +1,25 @@
+<h2>{{ article.title }}'s Resources</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Title</th>
+        <th>Url</th>
+        <th>Author</th>
+        <th>Type</th>
+        <th>Summary</th>
+    </tr>
+    <tr ng-repeat="resource in article.resources" class="repeat-animation">
+        <td>{{ resource.title}}</td>
+        <td>{{ resource.url }}</td>
+        <td>{{ resource.author}}</td>
+        <td>{{ resource.type}}</td>
+        <td>{{ resource.summary}}</td>
+    </tr>
+</table>    
+
+<br />
+<span>Number of Resources: {{ article.resources.length }}</span>
+<br />
+
+
+
+

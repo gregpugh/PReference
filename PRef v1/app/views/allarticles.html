@@ -1,0 +1,38 @@
+<h2>{{ appSettings.title }}</h2>
+
+Filter: <input type="text" ng-model="articleFilter" />
+
+<br /><br />
+
+<table class="table table-hover">
+    <tbody>
+        <tr class="success">
+            <th ng-click="doSort('title')">Title</th>
+            <th ng-click="doSort('summary')">Summary</th>
+            <th ng-click="doSort('created')">Created</th>
+            <th>Articles</th>
+            <th>Resources</th>
+            <th>&nbsp;</th>
+        </tr>
+
+        <tr popover="{{ article.content }}" popover-trigger="mouseenter"
+            class="active repeat-animation" ng-repeat="article in articles | filter:articleFilter | orderBy:sortBy:reverse">
+            <td>{{ article.title }}</td>
+            <td title="{{ article.content }}">{{ article.summary }}</td>
+            <td>{{ article.created | date }}</td>
+            <td><a href="#/articles/{{ article.id }}">View Article</a></td>
+            <td><a href="#/resources/{{ article.id }}">View Resources</a></td>
+            <td class="center"><span class="glyphicon glyphicon-remove delete" ng-click="deleteArticle(article.id)"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+
+<span>Total articles: {{ articles.length }}</span>
+
+<br /> 
+ 
+<footer>
+    Version: {{ appSettings.version }}
+</footer>

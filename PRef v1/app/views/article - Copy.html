@@ -1,0 +1,79 @@
+<h2>{{ article.title }}</h2>
+<span>{{ article.summary }}</span>
+
+<div id="MainTab">
+    {{ article.content }}
+</div>
+
+<br />
+<br />
+
+<div id="CommentsTab">
+    <div id="CommentsContent">
+        <table>
+            <tr>
+                <td><h3>{{ comment.title }}</h3></td>
+                <td>{{ comment.created | date }}</td>
+            </tr>
+            <tr>
+                <td colspan="2"> {{comment.content}} </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="CommentsList">
+        <div>
+            Filter: <input type="text" ng-model="commentsFilter" />
+        </div>
+
+        <ul ng-repeat="comment in article.comments | filter:commentsFilter | orderBy:sortBy:reverse" class="repeat-animation">
+            <li title="{{ comment.content }}">{{ comment.title }}</li>
+        </ul>
+
+        <div>Total comments: {{ article.comments.length }}</div>
+    </div>
+    <br />
+</div>
+
+<div id="ResourcesTab">
+    <h2>{{ article.title }}'s Resources</h2>
+
+    <div id="CurrentResource">
+        <table class="table">
+            <tr><td>Title</td>  <td>{{ resource.title}}</td></tr>
+            <tr><td>Url</td>    <td>{{ resource.url }}</td></tr>
+            <tr><td>Author</td> <td>{{ resource.author}}</td></tr>
+            <tr><td>Type</td>   <td>{{ resource.type}}</td></tr>
+            <tr><td>Summary</td><td>{{ resource.summary}}</td>
+        </table>
+    </div>
+
+    <div id="ResourceList">
+        <div>
+            Filter: <input type="text" ng-model="commentsFilter" />
+        </div>
+
+        <ul ng-repeat="resource in article.resources | filter:commentsFilter | orderBy:sortBy:reverse" class="repeat-animation">
+            <li title=" {{ resource.url }} 
+{{ resource.author}}  
+{{ resource.type}}
+{{ resource.summary}}">
+                {{ resource.title }}
+            </li>
+
+            
+
+        </ul>
+
+        <div>Total Resources: {{ article.resources.length }}</div>
+    </div>
+
+
+    <br />
+    <span>Number of Resources: {{ article.resources.length }}</span>
+    <br />
+
+</div>
+<footer>
+    Version: {{ appSettings.version }}
+</footer>

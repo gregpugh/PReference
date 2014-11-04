@@ -1,0 +1,103 @@
+<h2>{{ article.title }}</h2>
+<span>{{ article.summary }}</span>
+
+<my-tabs>
+
+    <!--Main-->
+    <my-pane title="Main">
+        <div id="MainTab">
+            <br />
+            <div id="ArticleContent" style="width:90%; float:left;">
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="2" height="500px"> {{article.content}} </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </my-pane>
+
+    <!--Comments-->
+    <my-pane title="Comments">
+
+        <div id="CommentsTab">
+            <br />
+            <div id="CommentsContent" style="width:80%; float:left;">
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td><h3>{{ comment.title }}</h3></td>
+                        <td>{{ comment.created | date }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="500px"> {{comment.content}} </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="CommentsList" style="float:right;">
+                <div>
+                    Filter: <input type="text" ng-model="commentsFilter" />
+                </div>
+
+                <ul ng-repeat="comment in article.comments | filter:commentsFilter | orderBy:sortBy:reverse" class="repeat-animation">
+                    <li title="{{ comment.content }}">{{ comment.title }}</li>
+                </ul>
+
+                <div>
+                    Total comments: {{ article.comments.length }}
+                </div>
+            </div>
+            <br />
+        </div>
+    </my-pane>
+
+    <!--Resources-->
+    <my-pane title="Resources">
+
+        <div id="ResourcesTab">
+            <h4>{{ article.title }}'s Resources</h4>
+
+            <div id="CurrentResource" style="width:70%; float:left;">
+                <table class="table table-bordered">
+                    <tr><td width="60px;">Title:</td>  <td>{{ resource.title}}</td></tr>
+                    <tr><td>Url:</td>    <td>{{ resource.url }}</td></tr>
+                    <tr><td>Author:</td> <td>{{ resource.author}}</td></tr>
+                    <tr><td>Type:</td>   <td>{{ resource.type}}</td></tr>
+                    <tr><td>Summary:</td><td>{{ resource.summary}}</td>
+                </table>
+            </div>
+
+            <div id="ResourceList" style="float:right;">
+                <div>
+                    Filter: <input type="text" ng-model="resourcesFilter" />
+                </div>
+
+                <ul ng-repeat="resource in article.resources | filter:resourcesFilter | orderBy:sortBy:reverse" class="repeat-animation">
+                    <li title=" {{ resource.url }}
+{{ resource.author }}
+{{ resource.type }}
+{{ resource.summary }}">
+                        {{ resource.title }}
+                    </li>
+                </ul>
+
+                <div>Total Resources: {{ article.resources.length }}</div>
+            </div>
+
+
+            <div style="clear:both;">
+                Number of Resources: {{ article.resources.length }}
+            </div>
+
+
+        </div>
+    </my-pane>
+
+</my-tabs>
+
+<footer>
+    <div style="clear:both;">
+        Version: {{ appSettings.version }}
+    </div>
+</footer>
